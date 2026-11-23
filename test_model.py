@@ -49,4 +49,14 @@ def test_model_pipeline(model):
   assert "model" in model.named_steps
 #Test 7:Check reusable prediction function 
 def test_make_prediction(model,sample_data):
-  output=make_prediction
+  output=make_prediction(model,sample_data)
+  assert "prediction" in output
+  assert output["prediction"] in {"Malignant","Benign"}
+#TEST 8:Check probabilities returned by prediction function
+def test_make_prediction_probabilities(model,sample_data):
+  output = make_prediction(model,sample_data)
+  probabilities=output["probabilities"]
+  assert "malignant" in probabilities
+  assert "benign" in probabilities
+  assert 0<=probabilities["malignant"]<=1
+  assert 0<=probabilities["benign"]<=1
