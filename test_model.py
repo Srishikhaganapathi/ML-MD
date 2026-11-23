@@ -47,4 +47,6 @@ def test_model_pipeline(model):
   assert hasattr(model,"named_steps")
   assert "scaler" in model.named_steps
   assert "model" in model.named_steps
-#Test
+#Test 7:Check reusable prediction function 
+def test_make_prediction(model,sample_data):
+  output=make_prediction
